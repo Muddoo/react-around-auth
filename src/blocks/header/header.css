@@ -17,8 +17,10 @@
     color: white;
 }
 
-.header__wrapper p {
+.header__wrapper p,
+.header__wrapper button {
     margin: 0;
+    margin-top: 5px;
 }
 
 .header__email {
@@ -94,7 +96,8 @@
         visibility: visible;
         max-height: 100vh;
     }
-    .header__wrapper p {
+    .header__wrapper p,
+    .header__wrapper button {
         margin-top: 0;
     }
     .header__icon {
