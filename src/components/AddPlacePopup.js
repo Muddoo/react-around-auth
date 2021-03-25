@@ -27,7 +27,7 @@ function AddPlacePopup(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        e.target.textContent = 'Saving...';
+        e.target.querySelector('.popup__submit').textContent = 'Saving...';
         submit(fields);
     }
 

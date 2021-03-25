@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import * as auth from './auth'
+import { Link } from 'react-router-dom'
 
 function Register(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState({})
-
-    const history = useHistory();
 
     function handleEmail(e) {
         setEmail(e.target.value)
@@ -24,18 +21,8 @@ function Register(props) {
     function handleSubmit(e) {
         e.preventDefault();
         if(!Object.values(error).filter(e => e).length) {
-            auth.register(password,email)
-                .then(res => {
-                    reset();
-                    if(res.data)  {
-                        props.handleRegister(true,email,password);
-                        history.push('/signin')
-                        return
-                    };
-                    props.handleRegister(false)
-                    props.toggleToolTip()
-                })
-                .catch(err => console.log(err))
+            props.handleRegister(password,email);
+            reset()
         }
     }
 

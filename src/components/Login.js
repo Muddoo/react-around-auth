@@ -1,20 +1,9 @@
-import { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import { authorize } from './auth'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Login(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const history = useHistory()
-
-    useEffect(() => {
-        if(props.password) {
-            handleAuth(props.password,props.email);
-            props.handleRegister(true)
-            props.toggleToolTip()
-        }
-    },[props.password])
 
     function handleEmail(e) {
         setEmail(e.target.value)
@@ -26,24 +15,10 @@ function Login(props) {
         setEmail('');
         setPassword('')
     }
-    function handleAuth(password,email) {
-        authorize(password, email)
-            .then(({token}) => {
-                reset()
-                if(token) {
-                    localStorage.setItem('jwt', token)
-                    props.handleLog()
-                    history.push('/')
-                    return
-                }
-                props.handleRegister(false)
-                props.toggleToolTip()
-            })
-            .catch(err => console.log(err))
-    }
     function handleSubmit(e) {
         e.preventDefault();
-        handleAuth(password,email)
+        props.handleAuth(password,email);
+        reset()
     }
     return (
         <div className='login'>

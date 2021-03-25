@@ -7,7 +7,12 @@ function PopupWithForm(props) {
         className={`popup popup_${name} ${isOpen && 'visible'}`} 
         onClick={onClose}
       >
-          <form action="#" className="popup__form" name={name} noValidate>
+          <form 
+              action="#" 
+              className="popup__form" 
+              name={name} 
+              onSubmit={submit}
+              noValidate>
               <button className="popup__close" aria-label="close-button" type="button"></button>
               <h3 className="popup__header">{title}</h3>
               {inputs && inputs.map(([type,placeholder,name,min,max],i) => (
@@ -27,7 +32,6 @@ function PopupWithForm(props) {
                   type="submit" 
                   className={`popup__submit active ${submitButtonState && 'inactive'}`} 
                   aria-label="submit-button"
-                  onClick={submit}
                   ref={refButton}
                   disabled={submitButtonState}
               >
