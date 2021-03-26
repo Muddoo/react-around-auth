@@ -30,7 +30,6 @@ function App() {
     const [registered,setRegistered] = useState(false); 
     const [isOpenToolTip,setIsOpenToolTip] = useState(false);
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
 
     const history = useHistory()
 
@@ -61,26 +60,18 @@ function App() {
         setLoggedIn(false)
     },[])
 
-    useEffect(() => {
-        if(password) {
-            setLoggedIn(true)
-            handleAuth(password,email);
-            setRegistered(true);
-            toggleToolTip();
-            setPassword('')
-        }
-    },[password])
-
     function toggleToolTip() {
         setIsOpenToolTip(!isOpenToolTip)
     }
     function handleRegister(password,email) {
-        register(password,email)
+        return register(password,email)
             .then(res => {
                 if(res.data)  {
-                    setEmail(email);
-                    setPassword(password);
-                    history.push('/')
+                    setLoggedIn(true)
+                    history.push('/signin')
+                    handleAuth(password,email)
+                    setRegistered(true)
+                    toggleToolTip()
                     return
                 };
                 setRegistered(false)
