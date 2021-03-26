@@ -33,7 +33,7 @@ function Main(props) {
                     <img 
                         src={user?.avatar} 
                         draggable="false"  
-                        alt="profile image" 
+                        alt="profile" 
                         className={`profile__image ${isLoaded || 'profile__image_hidden'}`} 
                         onLoad={() => setIsLoaded(true)}
                         onError={() => setIsLoaded(false)}

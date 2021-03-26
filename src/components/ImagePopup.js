@@ -7,7 +7,7 @@ function ImagePopup(props) {
                 <img 
                     src={card && card.link} 
                     draggable="false" 
-                    alt="popup image" 
+                    alt="popup" 
                     className="popup__image" 
                     onClick={onClick}
                 />
